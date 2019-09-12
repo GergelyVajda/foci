@@ -8,7 +8,9 @@ package foci;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -78,6 +80,7 @@ public class FociEljaras {
             }
         }
     }
+    
 
     public void negyOtHatFeladatok() {
         System.out.println("-Negyedik feladat-");
@@ -113,6 +116,37 @@ public class FociEljaras {
                 }
             }
         }
-        System.out.println("Lőtt: "+osszlott+" Kapott: "+osszkapott);  
+        System.out.println("Lőtt: "+osszlott+" Kapott: "+osszkapott);
+        System.out.println("-Hatodik feladat-");
+        Integer legelsoFordulo=0;
+        String veroCsapat="";
+        for (int i = 0; i < jegyzokonyv.size(); i++) {
+            if (csapatnev==jegyzokonyv.get(i).getHazai() && jegyzokonyv.get(i).getHazaiVege()<jegyzokonyv.get(i).getVendegVege()) {
+                if (jegyzokonyv.get(i).getFordulo()<legelsoFordulo) {
+                    legelsoFordulo=jegyzokonyv.get(i).getFordulo();
+                    veroCsapat=jegyzokonyv.get(i).getVendeg();
+                }
+            }
+        }
+        if (legelsoFordulo==0) {
+            System.out.println("A csapat otthon veretlen maradt.");
+        }else{
+        System.out.println("A(z) "+csapatnev+" csapatot a(z) "+legelsoFordulo+". fordulóban a(z) "+veroCsapat+" verte meg először.");
+        }
     }
+    public void hetedikFeladat(){
+        System.out.println("-Hetedik feladat-");
+       
+        for (int i = 0; i < jegyzokonyv.size(); i++) {
+            
+        }
+        try {
+            FileWriter buta = new FileWriter("stat.txt");
+            PrintWriter okos=new PrintWriter(buta);
+            
+        } catch (IOException ex) {
+            System.out.println("A file nem készíthető el!");
+        }
+    }
+    
 }

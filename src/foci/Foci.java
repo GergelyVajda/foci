@@ -20,6 +20,7 @@ public class Foci {
         fa.masodikFeladat();
         fa.harmadikFeladat();
         fa.negyOtHatFeladatok();
+        fa.hetedikFeladat();
     }
     
 }
