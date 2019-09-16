@@ -87,37 +87,37 @@ public class FociEljaras {
         System.out.println("Kérem a csapat nevét!");
         String csapatnev = sc.nextLine();
         System.out.println("-Ötödik feladat-");
-        Integer lott1 = 0;
-        Integer kapott1 = 0;
-        Integer lott2 = 0;
-        Integer kapott2 = 0;
-        Integer osszlott = lott1 + lott2;
-        Integer osszkapott = kapott1 + kapott2;
+        Integer lott = 0;
+        Integer kapott = 0;
         //hazaiként játszott meccsek gólstatisztikája
         for (int i = 0; i < jegyzokonyv.size(); i++) {
-            if (csapatnev == jegyzokonyv.get(i).getHazai()) {
-                if (jegyzokonyv.get(i).getHazaiVege() > jegyzokonyv.get(i).getVendegVege()) {
-                    lott1=lott1++;
-                }
-                if (jegyzokonyv.get(i).getHazaiVege() < jegyzokonyv.get(i).getVendegVege()) {
-                    kapott1=kapott1++;
-                }
+            if (csapatnev.equals(jegyzokonyv.get(i).getHazai())) {
+                lott = lott + jegyzokonyv.get(i).getHazaiVege();
+                kapott = kapott + jegyzokonyv.get(i).getVendegVege();
+            }else{
+                lott = lott + jegyzokonyv.get(i).getVendegVege();
+                kapott = kapott + jegyzokonyv.get(i).getHazaiVege();
             }
         }
-        //vendégként játszott meccsek gólstatisztikája
-        for (int i = 0; i < jegyzokonyv.size(); i++) {
-            if (csapatnev == jegyzokonyv.get(i).getVendeg()) {
-                if (jegyzokonyv.get(i).getHazaiVege() > jegyzokonyv.get(i).getVendegVege()) {
-                    lott2=lott2++;
-                }
-                if (jegyzokonyv.get(i).getHazaiVege() < jegyzokonyv.get(i).getVendegVege()) {
-                    kapott2=kapott2++;
-                }
-            }
-        }
-        System.out.println("Lőtt: " + osszlott + " Kapott: " + osszkapott);
+        
+        System.out.println("Lőtt: " + lott + " Kapott: " + kapott);
         System.out.println("-Hatodik feladat-");
-      
+        Integer legelsoFordulo = Integer.MAX_VALUE;
+        String veroCsapat = "";
+        for (int i = 0; i < jegyzokonyv.size(); i++) {
+            if (csapatnev.equals(jegyzokonyv.get(i).getHazai()) && jegyzokonyv.get(i).getHazaiVege() < jegyzokonyv.get(i).getVendegVege()) {
+                if (jegyzokonyv.get(i).getFordulo() < legelsoFordulo) {
+                    legelsoFordulo = jegyzokonyv.get(i).getFordulo();
+                    veroCsapat = jegyzokonyv.get(i).getVendeg();
+                }
+            }
+        }
+        if (legelsoFordulo == Integer.MAX_VALUE) {
+            System.out.println("A csapat otthon veretlen maradt.");
+        } else {
+            System.out.println("A(z) " + csapatnev + " csapatot a(z) " + legelsoFordulo + ". fordulóban a(z) " + veroCsapat + " verte meg először.");
+        }
+
     }
 
     public void hetedikFeladat() {
