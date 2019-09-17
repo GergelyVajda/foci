@@ -94,12 +94,12 @@ public class FociEljaras {
             if (csapatnev.equals(jegyzokonyv.get(i).getHazai())) {
                 lott = lott + jegyzokonyv.get(i).getHazaiVege();
                 kapott = kapott + jegyzokonyv.get(i).getVendegVege();
-            }else{
+            } else {
                 lott = lott + jegyzokonyv.get(i).getVendegVege();
                 kapott = kapott + jegyzokonyv.get(i).getHazaiVege();
             }
         }
-        
+
         System.out.println("Lőtt: " + lott + " Kapott: " + kapott);
         System.out.println("-Hatodik feladat-");
         Integer legelsoFordulo = Integer.MAX_VALUE;
@@ -122,6 +122,24 @@ public class FociEljaras {
 
     public void hetedikFeladat() {
         System.out.println("-Hetedik feladat-");
+        Integer[] stat = new Integer[100];
+        Integer ideiglenes;
+        for (int i = 0; i < 100; i++) {
+            stat[i]=0;
+        }
+        //statisztika számolás
+        for (int i = 0; i < jegyzokonyv.size(); i++) {
+            ideiglenes=(jegyzokonyv.get(i).getHazaiVege())*10+(jegyzokonyv.get(i).getVendegVege());
+            if (stat[ideiglenes]!=0) {
+                stat[ideiglenes]++;
+            }else {
+                stat[ideiglenes]=1;
+            }
+        }
+        for (int i = 0; i < 100; i++) {
+            System.out.println(i+". "+stat[i]);
+        }
+        
         try {
             FileWriter buta = new FileWriter("stat.txt");
             PrintWriter okos = new PrintWriter(buta);
