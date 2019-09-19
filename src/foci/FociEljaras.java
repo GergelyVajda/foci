@@ -123,17 +123,27 @@ public class FociEljaras {
     public void hetedikFeladat() {
         System.out.println("-Hetedik feladat-");
         Integer[] stat = new Integer[100];
-        Integer ideiglenes;
+        Integer ideiglenes1;
+        Integer ideiglenes2;
         for (int i = 0; i < 100; i++) {
             stat[i]=0;
         }
         //statisztika számolás
         for (int i = 0; i < jegyzokonyv.size(); i++) {
-            ideiglenes=(jegyzokonyv.get(i).getHazaiVege())*10+(jegyzokonyv.get(i).getVendegVege());
-            if (stat[ideiglenes]!=0) {
-                stat[ideiglenes]++;
+            ideiglenes1=(jegyzokonyv.get(i).getHazaiVege())*10+(jegyzokonyv.get(i).getVendegVege());
+            System.out.println(ideiglenes1);
+            ideiglenes2=(jegyzokonyv.get(i).getVendegVege())*10+(jegyzokonyv.get(i).getHazaiVege());
+            System.out.println(ideiglenes2);
+                   
+            if (stat[ideiglenes1+1]!=0) {
+                stat[ideiglenes1+1]++;
             }else {
-                stat[ideiglenes]=1;
+                stat[ideiglenes1+1]=1;
+            }
+            if (stat[ideiglenes2+1]!=0) {
+                stat[ideiglenes2+1]++;
+            }else {
+                stat[ideiglenes2+1]=1;
             }
         }
         for (int i = 0; i < 100; i++) {
