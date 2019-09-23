@@ -121,38 +121,36 @@ public class FociEljaras {
     }
 
     public void hetedikFeladat() {
-        System.out.println("-Hetedik feladat-");
         Integer[] stat = new Integer[100];
-        Integer ideiglenes1;
-        Integer ideiglenes2;
+        Integer ideiglenes;
         for (int i = 0; i < 100; i++) {
             stat[i]=0;
         }
         //statisztika számolás
         for (int i = 0; i < jegyzokonyv.size(); i++) {
-            ideiglenes1=(jegyzokonyv.get(i).getHazaiVege())*10+(jegyzokonyv.get(i).getVendegVege());
-            System.out.println(ideiglenes1);
-            ideiglenes2=(jegyzokonyv.get(i).getVendegVege())*10+(jegyzokonyv.get(i).getHazaiVege());
-            System.out.println(ideiglenes2);
-                   
-            if (stat[ideiglenes1+1]!=0) {
-                stat[ideiglenes1+1]++;
-            }else {
-                stat[ideiglenes1+1]=1;
+            
+            if (jegyzokonyv.get(i).getHazaiVege()>jegyzokonyv.get(i).getVendegVege()) {
+                ideiglenes=(jegyzokonyv.get(i).getHazaiVege())*10+(jegyzokonyv.get(i).getVendegVege());
+            }else{
+            ideiglenes=(jegyzokonyv.get(i).getVendegVege())*10+(jegyzokonyv.get(i).getHazaiVege());
             }
-            if (stat[ideiglenes2+1]!=0) {
-                stat[ideiglenes2+1]++;
+            
+            if (stat[ideiglenes]!=0) {
+                stat[ideiglenes]++;
             }else {
-                stat[ideiglenes2+1]=1;
+                stat[ideiglenes]=1;
             }
-        }
-        for (int i = 0; i < 100; i++) {
-            System.out.println(i+". "+stat[i]);
         }
         
         try {
             FileWriter buta = new FileWriter("stat.txt");
             PrintWriter okos = new PrintWriter(buta);
+            for (int i = 0; i < 100; i++) {
+                if (stat[i]!=0) {
+                    okos.println(i%10+"-"+i/10+" (vagy "+i/10+"-"+i%10+"): "+stat[i]+". darab");
+                }
+            }
+            buta.close();
 
         } catch (IOException ex) {
             System.out.println("A file nem készíthető el!");
